@@ -247,7 +247,7 @@ https://drive.google.com/drive/u/0/folders/1wFPyNBLdCCwlJlTWCd96tmriSVujdRya
 
 Manuel Felipe Barrera Barrera
 
-## Agradecimientos 🎁
+## Agradecimientos
 
 Al profesor Daniel Benavides por su guia durante este desarrollo.
 
