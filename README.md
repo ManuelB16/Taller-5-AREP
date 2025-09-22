@@ -1,131 +1,143 @@
-# Crear un sistema CRUD para gestionar propiedades 💻
+# CRUD de Gestión de Propiedades
 
-El propósito de este proyecto es desarrollar un sistema CRUD (Crear, Leer, Actualizar, Eliminar) para la gestión de propiedades inmobiliarias. La aplicación web permitirá a los usuarios administrar anuncios de propiedades de manera eficiente a través de una interfaz intuitiva y un backend robusto.
+Este proyecto consiste en el desarrollo de un sistema CRUD (**Crear, Leer, Actualizar y Eliminar**) orientado a la **administración de propiedades inmobiliarias**.  
+El objetivo es ofrecer una aplicación web que permita manejar anuncios de propiedades de manera simple, rápida y eficiente.
 
-Los usuarios podrán:
+---
 
-✅ Crear nuevas propiedades agregando información detallada.
+## Funcionalidades
 
-✅ Visualizar una lista de propiedades disponibles y acceder a los detalles de cada una.
+- **Crear propiedades**: Registrar nuevas propiedades con sus datos principales (dirección, precio, tamaño, descripción).  
+- **Leer propiedades**: Visualizar el listado de propiedades disponibles y acceder al detalle de cada una.  
+- **Actualizar propiedades**: Modificar los datos de un registro existente en caso de cambios.  
+- **Eliminar propiedades**: Borrar aquellas propiedades que ya no estén disponibles.  
 
-✅ Actualizar los datos de una propiedad existente en caso de modificaciones.
+---
 
-✅ Eliminar propiedades que ya no estén disponibles.
+## Tecnologías Utilizadas
 
-Para lograr esto, la aplicación se desarrollará con Spring Boot para el backend, MySQL como base de datos, y un frontend en HTML, JavaScript y AJAX (o Fetch API) para una experiencia de usuario fluida. Además, se desplegará en AWS, asegurando escalabilidad y disponibilidad.
+### Backend
+- **Spring Boot** → Framework para la creación de servicios REST.
+- **JPA/Hibernate** → Mapeo objeto-relacional para el acceso a la base de datos.
+- **MySQL** → Base de datos relacional para almacenar la información.
 
-## Componentes del Proyecto.
+### Frontend
+- **HTML5** → Estructura de la aplicación web.  
+- **CSS3** → Diseño y estilos visuales.  
+- **JavaScript (AJAX / Fetch API)** → Lógica de interacción con la API y manejo dinámico del contenido.  
 
-1- Backend (Spring Boot)
+---
 
-Controladores: Manejan las solicitudes HTTP y definen los endpoints de la API.
-Entidades: Representan las tablas de la base de datos.
-Repositorios: Proveen métodos para realizar operaciones CRUD en la base de datos.
+## Arquitectura del Proyecto
 
-2- Frontend (HTML, CSS, JavaScript)
+1. **Backend (Spring Boot)**
+   - **Controladores**: Manejan las solicitudes HTTP y exponen los endpoints de la API REST.
+   - **Entidades**: Representan las tablas de la base de datos.
+   - **Repositorios**: Contienen las operaciones CRUD para el acceso a los datos.  
 
-HTML: Define la estructura de la página web.
-CSS: Aplica estilos a la página web.
-JavaScript: Maneja la lógica del frontend, incluyendo la interacción con la API del backend.
+2. **Frontend (HTML, CSS, JavaScript)**
+   - **HTML**: Define la estructura general de la interfaz.  
+   - **CSS**: Aplica estilos y diseño responsivo para mejorar la experiencia de usuario.  
+   - **JavaScript**: Gestiona la lógica del cliente y la comunicación con el backend a través de llamadas REST (AJAX/Fetch API).  
 
-3- Despliegue en AWS
+---
 
-EC2: Instancias para ejecutar la aplicación.
-Docker: Contenedores para empaquetar y desplegar la aplicación.
+## Despliegue
 
-## Descripción de la aplicación 📖
+- La aplicación está diseñada para ejecutarse localmente contra una base de datos **MySQL**.  
+- Puede desplegarse en **AWS** (usando instancias EC2 para el backend y RDS para la base de datos).  
+- El frontend puede alojarse en un bucket **S3** con hosting estático o dentro de la aplicación backend.  
 
-Esta aplicación web permite a los usuarios registrar, visualizar, actualizar y eliminar propiedades. Está construida utilizando Spring Boot en el backend y HTML, CSS y JavaScript en el frontend. La aplicación se conecta a una base de datos MySQL para almacenar la información de las propiedades.
+---
 
-Este proyecto proporcionará experiencia práctica en desarrollo full-stack, diseño de APIs REST, gestión de bases de datos, y despliegue en la nube con AWS. 
+## Descripción de la Aplicación  
 
-## Diagrama de Arquitectura ☁️
+Esta aplicación web permite a los usuarios **registrar, visualizar, actualizar y eliminar propiedades inmobiliarias**.  
+El proyecto está construido con **Spring Boot** en el backend y **HTML, CSS y JavaScript** en el frontend, utilizando **MySQL** como base de datos para el almacenamiento de la información.  
 
-Este diagrama representa la arquitectura de un sistema web de gestión de propiedades desplegado en AWS. A continuación, se describe el flujo de la información y los componentes involucrados:
+Este desarrollo ofrece experiencia práctica en:  
+- Programación **Full-Stack**  
+- Diseño e implementación de **APIs REST**  
+- Integración con **bases de datos relacionales**  
 
-* Usuario (User)
+---
 
-Un usuario accede al sistema a través de un navegador web (Browser) ingresando la URL de la aplicación:
-http://ec2-52-91-91-122.compute-1.amazonaws.com:8080.
+### Usuario (User)  
+El acceso al sistema se realiza mediante un navegador web (Browser) ingresando la siguiente URL:  
 
-* Aplicación Web en AWS (PropertyController & Property)
+localhost:8081
 
-La solicitud es dirigida a un servidor alojado en una instancia Amazon EC2, donde se ejecuta una aplicación Spring Boot.
-PropertyController: Controlador REST que gestiona las solicitudes HTTP del usuario.
-Property: Representa la entidad de propiedad inmobiliaria en la aplicación.
+---
 
-* Recursos del Servidor
+### Recursos del Servidor  
+El servidor está preparado para gestionar **múltiples solicitudes concurrentes** y administrar de forma eficiente los recursos necesarios para procesarlas.
 
-El servidor puede manejar múltiples solicitudes y administrar recursos para procesarlas.
+---
 
-* Base de Datos en AWS
+## Descripción de las Clases  
 
-Se utiliza AWS Database Migration Service (DMS) para la gestión y migración de bases de datos.
-Se almacena la información de las propiedades en una base de datos, probablemente en Amazon RDS (MySQL, PostgreSQL, etc.).
+### 1. **Property (Entidad Principal)**  
+Representa la entidad **Propiedad Inmobiliaria**, con los siguientes atributos:  
 
-* Servicios de Migración en AWS
+- `id: Long` → Identificador único de la propiedad.  
+- `address: String` → Dirección de la propiedad.  
+- `price: String` → Precio de la propiedad.  
+- `size: String` → Tamaño de la propiedad (m²).  
+- `description: String` → Descripción breve de la propiedad.  
 
-AWS Server Migration Service (SMS) permite mover servidores y bases de datos hacia la nube de AWS.
-Este componente se encarga de la transferencia de datos entre servidores.
+Incluye los **métodos getters y setters** para manipular dichos atributos.
 
-* Comunicación Externa (HTTP)
+---
 
-Finalmente, la información puede ser compartida con otros sistemas o servicios externos mediante protocolos HTTP.
+### 2. **PropertyController (Controlador REST)**  
+Expone los **endpoints REST** y maneja las operaciones CRUD.  
 
+Métodos principales:
+- `createProperty(property: Property): Property` → Crear una nueva propiedad.  
+- `getAllProperties(): List<Property>` → Listar todas las propiedades.  
+- `getPropertyById(id: Long): ResponseEntity<Property>` → Obtener una propiedad por su ID.  
+- `updateProperty(id: Long, propertyDetails: Property): ResponseEntity<Property>` → Actualizar los datos de una propiedad.  
+- `deleteProperty(id: Long): ResponseEntity<Void>` → Eliminar una propiedad existente.  
 
-![Diagrama en blanco (3)](https://github.com/user-attachments/assets/46f66816-2a03-4141-8a59-b92b3720e993)
+Este controlador utiliza **PropertyRepository** para conectarse con la capa de persistencia.
 
-Este diagrama muestra un sistema basado en AWS donde un usuario interactúa con una aplicación web en una instancia EC2, que a su vez gestiona propiedades inmobiliarias mediante una base de datos. Se incluyen herramientas de migración de AWS para administrar la infraestructura y los datos.
+---
 
-## Diagrama de Clase 💡
+### 3. **PropertyRepository (Repositorio JPA)**  
+Interfaz que extiende de `JpaRepository<Property, Long>`.  
+Permite realizar operaciones CRUD sobre la base de datos de manera automática, utilizando la entidad `Property`.
 
-Este diagrama de clases representa la estructura del sistema CRUD para gestionar propiedades inmobiliarias utilizando Spring Boot y JPA.
+---
 
-![image](https://github.com/user-attachments/assets/dfffb328-24e9-46d8-91e4-4296849b34de)
+### 4. **JpaRepository<Property, Long>**  
+Interfaz genérica de Spring Data JPA.  
+- La clase `Property` representa la entidad.  
+- El parámetro `Long` corresponde al tipo de la clave primaria.  
 
-## Descripción de las clases
+Proporciona métodos estándar como:  
+- `save()`  
+- `findById()`  
+- `findAll()`  
+- `deleteById()`  
 
-1. Clase Property (Entidad Principal)
-Esta clase representa una propiedad inmobiliaria y contiene los siguientes atributos:
+---
 
-id: Long → Identificador único de la propiedad.
-address: String → Dirección de la propiedad.
-price: String → Precio de la propiedad.
-size: String → Tamaño de la propiedad.
-description: String → Descripción de la propiedad.
-También incluye los métodos getter y setter para manipular los atributos.
+### 5. **ResponseEntity<T>**  
+Clase utilizada para encapsular las **respuestas HTTP** del controlador.  
 
-2. PropertyController (Controlador REST)
-Es el controlador de la API que maneja las operaciones CRUD y expone los endpoints REST.
-Contiene los siguientes métodos:
+Ejemplos:
+- `ResponseEntity<Property>` → Retorna una propiedad y el código de estado HTTP.  
+- `ResponseEntity<Void>` → Retorna solo el código HTTP, usado en operaciones como **DELETE**.  
 
-requestMethodName(param: String): String → Un método auxiliar.
-createProperty(property: Property): Property → Crea una nueva propiedad.
-getAllProperties(): List<Property> → Devuelve una lista con todas las propiedades.
-getPropertyById(id: Long): ResponseEntity<Property> → Obtiene una propiedad por su ID.
-updateProperty(id: Long, propertyDetails: Property): ResponseEntity<Property> → Actualiza una propiedad existente.
-deleteProperty(id: Long): ResponseEntity<Void> → Elimina una propiedad.
-Este controlador interactúa con el repositorio PropertyRepository para acceder a la base de datos.
+---
 
-3. PropertyRepository (Interfaz del Repositorio JPA)
-Es una interfaz que extiende JpaRepository<Property, Long>.
+## 🔗 Relaciones entre las Clases  
 
-Permite realizar operaciones sobre la base de datos, como guardar, actualizar, eliminar y buscar propiedades.
-Se enlaza directamente con la entidad Property.
-4. JpaRepository<Property, Long> (Interfaz Genérica de Spring Data JPA)
-JpaRepository<K, V> es una interfaz genérica donde K representa la entidad (Property) y V el tipo de la clave primaria (Long).
-Proporciona métodos listos para usar, como save(), findById(), findAll(), deleteById(), entre otros.
+- **PropertyController** usa **PropertyRepository** para acceder y manipular datos dentro de la base de datos.  
+- **PropertyRepository** extiende de **JpaRepository**, lo que evita implementar consultas manualmente.  
+- **ResponseEntity** asegura que las respuestas del backend tengan un formato adecuado y consistente en la API REST.
 
-5. ResponseEntity<T> (Clase para Manejo de Respuestas HTTP)
-Se usa para envolver respuestas HTTP en los métodos del controlador.
-ResponseEntity<Property> → Respuesta HTTP con una propiedad como cuerpo.
-ResponseEntity<Void> → Respuesta HTTP sin contenido, usada en eliminaciones (DELETE).
-Relaciones entre las clases
-PropertyController usa PropertyRepository para acceder a los datos.
-PropertyRepository extiende JpaRepository<Property, Long>, lo que permite manipular la base de datos sin escribir consultas SQL manuales.
-ResponseEntity<T> se utiliza en los métodos del controlador para manejar respuestas HTTP de forma adecuada.
-
-## Comenzando 🚀
+## Comenzando
 
 Las siguientes instrucciones le permitirán obtener una copia del proyecto en funcionamiento en su máquina local para fines de desarrollo y prueba.
 
@@ -141,14 +153,13 @@ Las siguientes instrucciones le permitirán obtener una copia del proyecto en fu
 * Versión Java: 17
 ```
 
-### Instalación 📦
+### Instalación
 
 Realice los siguientes pasos para clonar el proyecto en su máquina local.
 
 ```
-git clone https://github.com/Pau993/Taller05.git
-cd Taller05
-git checkout Taller05
+git clone https://github.com/ManuelB16/Taller-5-AREP
+cd Taller-5-AREP
 mvn clean compile
 ```
 
@@ -163,7 +174,7 @@ mvn exec:java -Dexec.mainClass="com.example.Application"
 
 El anterior comando limpiará las contrucciones previas, compilará y empaquetará el código en un jar y luego ejecutará la aplicación.
 
-Diríjase a su navegador de preferencia y vaya a la siguiente dirección: [http://localhost:35000/](http://ec2-52-91-91-122.compute-1.amazonaws.com:8080) para ver la aplicación en funcionamiento.
+Diríjase a su navegador de preferencia y vaya a la siguiente dirección: localhost:8081 para ver la aplicación en funcionamiento.
 
 ## Ejecutando las pruebas ⚙️
 
@@ -174,7 +185,8 @@ Las pruebas realizadas en este proyecto se enfocan en la validación y verificac
 ```
 mvn test
 ```
-![image](https://github.com/user-attachments/assets/1140e7e4-0f60-4a51-a479-3919a91e7e20)
+<img width="1268" height="413" alt="image" src="https://github.com/user-attachments/assets/ce5900b0-d06f-4023-8f25-3e23b0c13dcd" />
+
 
 ## Descripción de las pruebas
 
@@ -217,7 +229,7 @@ Verifica que la respuesta tenga un estado 204 No Content, lo que indica que la p
 * Totalmente adaptable a diferentes dispositivos gracias a su diseño responsivo.
 * Panel de busqueda de archivos, el cual permite leer cualquier tipo de archivo localmente.
   
-2. Gestión de archivos: ⚙️
+2. Gestión de archivos:
 
 * Incluye botones interactivos que permiten abrir y visualizar archivos clave como:
 * Ver las propiedades
@@ -227,16 +239,18 @@ Verifica que la respuesta tenga un estado 204 No Content, lo que indica que la p
 * Documentos HTML (index.html).
 * Imágenes (Chill.jpg).
 
-## Muestra de la aplicación 🧩
+## Muestra de la aplicación
 
-https://github.com/user-attachments/assets/53671196-9b61-4c81-a61a-8d86f9b5cca9
+https://drive.google.com/drive/u/0/folders/1wFPyNBLdCCwlJlTWCd96tmriSVujdRya
 
-## Autores ✒️
+## Autor
 
-## Licencia 📄
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Manuel Felipe Barrera Barrera
 
 ## Agradecimientos 🎁
 
-Agradecimientos al profeso Daniel Benavides por brindarme sus conocimientos.
+Al profesor Daniel Benavides por su guia durante este desarrollo.
+
+# NOTA
+
+Se presentaron problemas con AWS (creditos insuficientes), asi que se opto por presentarse con un entorno local, la unica diferencia fundamental fue la subida del servidor, todo lo demas funciona como se espera.
