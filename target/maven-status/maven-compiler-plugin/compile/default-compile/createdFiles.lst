@@ -1,0 +1,7 @@
+com\example\Controller\Controllered.class
+com\example\Application.class
+com\example\customer\Customer.class
+com\example\property\Property.class
+com\example\customer\CustomerRepository.class
+com\example\property\PropertyRepository.class
+com\example\property\PropertyController.class
